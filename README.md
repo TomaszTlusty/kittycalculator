@@ -14,7 +14,7 @@
     photos/         <- build photos, CAD screenshot, wiring diagram
 -->
 
-# [Project name]
+# Kitty Calculator
 
 [One or two sentences, your own words: what is this? e.g. "A small desk
 companion — a 3D-printed cat whose 16x2 LCD shows blinking pixel eyes,
@@ -85,7 +85,7 @@ keypad handling, etc.]
 
 | #  | Part                                   | Qty  | Link     | Approx. price |
 | -- | -------------------------------------- | ---- | -------- | ------------- |
-| 1  | Arduino Uno R3 (or clone)              | 1    | [link]   | [zł]          |
+| 1  | Arduino Uno clone                      | 1    | [link]   | [zł]          |
 | 2  | 4x4 matrix keypad shield               | 1    | [link]   | [zł]          |
 | 3  | 16x2 character LCD (HD44780, blue)     | 1    | [link]   | [zł]          |
 | 4  | 10k potentiometer (contrast)           | 1    | [link]   | [zł]          |
