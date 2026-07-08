@@ -3,7 +3,7 @@ MCU    = atmega328p
 PART   = m328p
 PORT   = /dev/ttyACM1
 BAUD   = 115200
-TARGET = test
+TARGET = main
 
 # --------
 all: $(TARGET).hex
