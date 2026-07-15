@@ -16,9 +16,7 @@
 
 # Kitty Calculator
 
-[One or two sentences, your own words: what is this? e.g. "A small desk
-companion — a 3D-printed cat whose 16x2 LCD shows blinking pixel eyes,
-driven by an Arduino."]
+A small desk companion , fancy calculator with a tamagotchi functions
 
 ## What it does
 
@@ -99,8 +97,8 @@ keypad handling, etc.]
 
 ## Build notes
 
-[A few honest lines: how you built it, what went wrong, what you'd change.
-Good raw material for the journal too.]
+When i was building this project i thought it gonna be easy until i learned how hard is to write asm code into LCD display with 16 pins! 
+that was the moment I switched to C
 
 ## License
 

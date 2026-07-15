@@ -96,3 +96,4 @@ s1:
   dec r18
   brne s1
   ret
+;not making LCD display in asm ngl too hard
