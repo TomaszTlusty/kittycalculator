@@ -1,36 +1,16 @@
-<!--
-  NOTE TO YOU (delete this whole comment before shipping):
-  This is a SKELETON, not a finished README. Replace every [bracketed] prompt
-  with your own words, your own photos, and real values. Hack Club rejects
-  AI-written READMEs, so the prose, photos and BOM links have to be yours.
-  The technical bits (wiring table, "how it works", BOM rows) are facts about
-  your build that I've pre-filled to save you time — check them and edit freely.
+# Kitty Calculator 
 
-  Suggested repo layout:
-    README.md
-    JOURNAL.md
-    firmware/cat_eyes_lcd.ino
-    cad/            <- your enclosure source + exported STL
-    photos/         <- build photos, CAD screenshot, wiring diagram
--->
-
-# Kitty Calculator
-
-A small desk companion , fancy calculator with a tamagotchi functions
+A small desk companion — a calculator built entirely from scratch in pure C99 for the ATmega328P.
 
 ## What it does
 
-[Describe the behaviour of YOUR finished build: the eyes blink, look around,
-react to a keypad press, etc. Write what it actually does once it's working.]
+Works like a normal calculator but with a dangerously-cute looking style
 
 ## Demo
 
-[Link to a short video of the working hardware. Upload the clip to this repo
-and paste the link here — "eyes blinking" is enough.]
+[Link to a short video of the working hardware. Upload the clip to this repo and paste the link here — e.g., showing the calculator math and chaining operations.]
 
 ## Photos
-
-[Insert real photos once you have them:]
 
 ![Assembled build](photos/assembled.jpg)
 ![Inside / wiring](photos/wiring.jpg)
@@ -38,34 +18,30 @@ and paste the link here — "eyes blinking" is enough.]
 
 ## How it works
 
-The 16x2 LCD is a *character* display (HD44780). It can't address single pixels,
-but it has 8 user-definable 5x8 characters. Each cat eye is one custom character;
-the firmware swaps an "open" glyph and a "closed" glyph to make it blink.
+This project steps away from the standard Arduino (`.ino`) environment and relies on **bare-metal C99 programming** (AVR libc) to maximize performance and demonstrate what happens under the hood.
 
-[Add anything specific to your version — extra expressions, keypad interaction, etc.]
+*   **Logic (FSM):** The calculator logic isn't a messy `if/else` block in `main.c`. It's decoupled into `calculator.c` and operates as a **Finite State Machine (FSM)** with an accumulator and a display register, mimicking real Casio chips.
+*   **Hardware Debouncing:** Keypad inputs are heavily debounced in software (20ms delay logic on state change) directly in the scanning matrix, effectively ignoring both press-bounce and the notoriously tricky release-bounce.
+*   **Direct Register Access:** Uses direct port manipulation (`PORTC`, `PORTD`, etc.) instead of slow `digitalWrite()` wrappers for keypad scanning.
 
 ## Wiring
 
-4-bit parallel mode:
+The project uses an I2C module for the LCD to save pins, leaving enough GPIOs for the 4x4 matrix keypad.
 
-| LCD pin        | Connects to              |
-| -------------- | ------------------------ |
-| VSS (1)        | GND                      |
-| VDD (2)        | 5V                       |
-| V0 (3)         | 10k pot wiper (contrast) |
-| RS (4)         | D12                      |
-| RW (5)         | GND                      |
-| E (6)          | D11                      |
-| D4 (11)        | D5                       |
-| D5 (12)        | D4                       |
-| D6 (13)        | D3                       |
-| D7 (14)        | D2                       |
-| A (15)         | 5V (via ~220Ω)           |
-| K (16)         | GND                      |
-
-> If you instead solder an I2C backpack onto the LCD, ignore the table above:
-> it becomes SDA→A4, SCL→A5, VCC→5V, GND→GND, and you switch to the
-> `LiquidCrystal_I2C` library. Update this section to match what you built.
+| Component / Pin    | ATmega328P (Arduino Uno) Pin |
+| ------------------ | ---------------------------- |
+| **I2C LCD** SDA    | A4 (PC4)                     |
+| **I2C LCD** SCL    | A5 (PC5)                     |
+| **I2C LCD** VCC    | 5V                           |
+| **I2C LCD** GND    | GND                          |
+| **Keypad** Row 1   | D2 (PD2)                     |
+| **Keypad** Row 2   | D3 (PD3)                     |
+| **Keypad** Row 3   | D4 (PD4)                     |
+| **Keypad** Row 4   | D5 (PD5)                     |
+| **Keypad** Col 1   | A0 (PC0)                     |
+| **Keypad** Col 2   | A1 (PC1)                     |
+| **Keypad** Col 3   | A2 (PC2)                     |
+| **Keypad** Col 4   | A3 (PC3)                     |
 
 [Add a wiring diagram image — make one in Fritzing or annotate a clear photo:]
 
@@ -73,33 +49,31 @@ the firmware swaps an "open" glyph and a "closed" glyph to make it blink.
 
 ## Firmware
 
-See [`firmware/cat_eyes_lcd.ino`](firmware/cat_eyes_lcd.ino). Open it in the
-Arduino IDE, pick your board and port, and upload.
+This project is written in pure C. The logic is divided into modular files:
+*   `main.c` - The system router.
+*   `calculator.c` - FSM calculator logic.
+*   `lcd_i2c.c` - Custom bare-metal I2C driver for the display.
+*   `keypad.c` - Matrix scanning and debouncing.
 
-[Note what you changed or added so it's clearly yours — new glyphs, animations,
-keypad handling, etc.]
+To flash it, you can use `avr-gcc` with `avrdude`, or simply open the project in **PlatformIO** / **Microchip Studio** and hit upload.
 
 ## Bill of Materials (BOM)
 
-| #  | Part                                   | Qty  | Link     | Approx. price |
+| #  | Part                                     | Qty  | Link     | Approx. price |
 | -- | -------------------------------------- | ---- | -------- | ------------- |
-| 1  | Arduino Uno clone                      | 1    | [link]   | [zł]          |
-| 2  | 4x4 matrix keypad shield               | 1    | [link]   | [zł]          |
-| 3  | 16x2 character LCD (HD44780, blue)     | 1    | [link]   | [zł]          |
-| 4  | 10k potentiometer (contrast)           | 1    | [link]   | [zł]          |
-| 5  | Jumper wires (M-M / M-F)               | ~10  | [link]   | [zł]          |
-| 6  | 3D-printed enclosure (your design)     | 1    | cad/     | filament      |
-| 7  | M3 screws + standoffs                  | a few| [link]   | [zł]          |
-| 8  | USB-B cable                            | 1    | [link]   | [zł]          |
-
-<!-- Polish suppliers you can link: Botland, Kamami, Nettigo, or AliExpress.
-     Put in the actual links you used, and the prices you actually paid. -->
+| 1  | Arduino Uno (used as dev board)        | 1    | [link]   | [zł]          |
+| 2  | 4x4 matrix keypad                      | 1    | [link]   | [zł]          |
+| 3  | 16x2 character LCD (with I2C backpack) | 1    | [link]   | [zł]          |
+| 4  | Jumper wires (M-M / M-F)               | ~15  | [link]   | [zł]          |
+| 5  | Random screws                          | 8    | [link]   | [zł]          |
+| 6  | 3D-printed enclosure                   | 1    | cad/     | filament      |
 
 ## Build notes
 
-When i was building this project i thought it gonna be easy until i learned how hard is to write asm code into LCD display with 16 pins! 
-that was the moment I switched to C
+When I started building this project, I thought it was going to be easy—until I learned how hard it is to write raw asm bare-metal code for an LCD display originally designed for 16 parallel pins! That was the moment I switched my approach, utilized an I2C backpack, and structured the whole system in clean C99. 
+
+Another huge learning curve was physics: mechanical switch bouncing. Writing a custom matrix scanner that properly filters out both press and release noise without lagging the CPU was a major milestone for this build.
 
 ## License
 
-[Optional — e.g. MIT for the code, CC-BY for the CAD. Your call.]
+MIT License. Feel free to use the code and CAD files for your own desk companions!
