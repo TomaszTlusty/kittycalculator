@@ -19,7 +19,7 @@ void keypad_init(void) {
 char keypad_scan(void) {
     for (uint8_t row = 0; row < 4; row++) {
         PORTD &= ~(1 << (row + 2));
-        _delay_us(5);
+        _delay_ms(20);
         for (uint8_t col = 0; col < 4; col++) {
             if (!(PINC & (1 << col))) {
                 PORTD |= (1 << (row + 2));

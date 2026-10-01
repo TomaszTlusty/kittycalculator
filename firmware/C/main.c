@@ -15,7 +15,7 @@ int main(void) {
     
     while (1) {
         calc_process_key(keypad_scan());
-        _delay_us(50); 
+        _delay_us(40); 
     }
     return 0;
 }
