@@ -8,5 +8,6 @@ void lcd_cmd(uint8_t cmd);
 void lcd_char(uint8_t data);
 void lcd_print(const char* str);
 void lcd_set_cursor(uint8_t col, uint8_t row);
+void lcd_clear(void);
 
 #endif 
