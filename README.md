@@ -13,8 +13,7 @@ Works like a normal calculator but with a dangerously-cute looking style
 ## Photos
 
 ![Assembled build](photos/assembled.jpg)
-![Inside / wiring](photos/wiring.jpg)
-![Enclosure in CAD](photos/cad.png)
+[Enclosure in CAD](photos/cad.png)
 
 ## How it works
 
@@ -45,7 +44,7 @@ The project uses an I2C module for the LCD to save pins, leaving enough GPIOs fo
 
 [Add a wiring diagram image — make one in Fritzing or annotate a clear photo:]
 
-![Wiring diagram](photos/wiring-diagram.png)
+![Wiring diagram](photos/diagram.jpg)
 
 ## Firmware
 
@@ -61,11 +60,11 @@ To flash it, you can use `avr-gcc` with `avrdude`, or simply open the project in
 
 | #  | Part                                     | Qty  | Link     | Approx. price |
 | -- | -------------------------------------- | ---- | -------- | ------------- |
-| 1  | Arduino Uno (used as dev board)        | 1    | [link]   | [zł]          |
-| 2  | 4x4 matrix keypad                      | 1    | [link]   | [zł]          |
-| 3  | 16x2 character LCD (with I2C backpack) | 1    | [link]   | [zł]          |
-| 4  | Jumper wires (M-M / M-F)               | ~15  | [link]   | [zł]          |
-| 5  | Random screws                          | 8    | [link]   | [zł]          |
+| 1  | Arduino Uno (used as dev board)        | 1    | [link](https://allegro.pl/produkt/arduino-uno-r3-atmel-atmega328-klon-72e5212a-1ea7-4c7f-be2e-ea9fd2853ebf)   | ~20zł          |
+| 2  | 4x4 matrix keypad                      | 1    | [link](https://www.microwire.eu/4x4-matrix-16-button-keypad-module)   | ~12zł          |
+| 3  | 16x2 character LCD (with I2C backpack) | 1    | [link](https://botland.com.pl/wyswietlacze-alfanumeryczne-i-graficzne/2351-wyswietlacz-lcd-2x16-znakow-niebieski-konwerter-i2c-lcm1602-5904422309244.html)   | ~25zł          |
+| 4  | Jumper wires (M-M / M-F)               | ~15  | [link](https://www.amazon.pl/Jumper-%C5%BCe%C5%84skiego-kablowe-druciane-Arduino/dp/B0DGBYR2YL)   | ~30zł         |
+| 5  | Random screws                          | 8    | [link]   | FREE          |
 | 6  | 3D-printed enclosure                   | 1    | cad/     | filament      |
 
 ## Build notes
