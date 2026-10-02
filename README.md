@@ -8,12 +8,13 @@ Works like a normal calculator but with a dangerously-cute looking style
 
 ## Demo
 
-[Link to a short video of the working hardware. Upload the clip to this repo and paste the link here — e.g., showing the calculator math and chaining operations.]
+[Link to a Demo](https://www.youtube.com/shorts/9LRZZzJ3-Zo)
 
 ## Photos
 
 ![Assembled build](photos/assembled.jpg)
 [Enclosure in CAD](photos/cad.png)
+[First Prototype](photos/prototype.jpg)
 
 ## How it works
 
